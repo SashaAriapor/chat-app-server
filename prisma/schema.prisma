@@ -14,9 +14,12 @@ model User {
   id           String   @id @default(uuid())
   firstname    String
   lastname     String?
-  email        String @unique
-  hash     String
+  email        String   @unique
+  hash         String
+  bio          String   @default("")
+  avatar       String   @default("./default/default-profile.png")
+  refreshToken String   @default("")
   createAt     DateTime @default(now())
   updateAt     DateTime @updatedAt
-  refreshToken String   @default("")
+
 }

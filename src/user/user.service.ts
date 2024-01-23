@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
-import { Prisma } from '@prisma/client';
 import { CreateUserDto } from './dto/createUser.dto';
 import * as argon2 from 'argon2';
+import { UpdateUserDto } from './dto/updateProfile.dto';
 
 @Injectable()
 export class UserService {
@@ -25,5 +25,9 @@ export class UserService {
 
   async findUserById(id: string) {
     return await this.databaseService.user.findUnique({ where: { id } });
+  }
+
+  async updateUserWithId(id: string, data: UpdateUserDto) {
+    return await this.databaseService.user.update({ where: { id }, data});
   }
 }
