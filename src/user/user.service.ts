@@ -28,6 +28,13 @@ export class UserService {
   }
 
   async updateUserWithId(id: string, data: UpdateUserDto) {
-    return await this.databaseService.user.update({ where: { id }, data});
+    return await this.databaseService.user.update({ where: { id }, data });
+  }
+
+  async updateUserAvatarWithId(id: string, avatarLink: string) {
+    return await this.databaseService.user.update({
+      where: { id },
+      data: { avatar: avatarLink },
+    });
   }
 }
