@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Post,
   Put,
   Req,
@@ -36,5 +37,15 @@ export class UserController {
       id,
       file.path.slice(7),
     );
+  }
+
+  @Delete('delete-avatar')
+  async deleteAvatar(req: Request) {
+    const id = req.user['sub'];
+    const defaultAvatar =  "default/default-profile.png";
+    return await this.userService.updateUserAvatarWithId(
+      id,
+      defaultAvatar
+    )
   }
 }
