@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Post,
   Put,
   Req,
@@ -22,6 +23,14 @@ import { multerOptions } from 'src/common/helper/multer.config';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get('profile')
+  async getProfile(@Req() req: Request) {
+    const userId = req.user['sub'];
+    const user = await this.userService.findUserById(userId);
+    const { id ,firstname, lastname, email, bio, avatar, createAt } = user;
+    return { id, firstname, lastname, email, bio, avatar, createAt };
+  }
 
   @Put('/update')
   async register(@Body() dto: UpdateUserDto, @Req() req: Request) {
