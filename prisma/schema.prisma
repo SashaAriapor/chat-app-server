@@ -33,10 +33,10 @@ model Contact {
 }
 
 model Message {
-  id         String   @id @default(uuid())
-  authorMail String
-  author     User     @relation(fields: [authorMail], references: [id])
-  to         String
-  createAt   DateTime @default(now())
-  contact    String
+  id       String   @id @default(uuid())
+  from     String
+  to       String
+  createAt DateTime @default(now())
+  contact  String
+  author   User     @relation(fields: [from], references: [email])
 }
