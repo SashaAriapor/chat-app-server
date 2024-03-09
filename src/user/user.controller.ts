@@ -18,7 +18,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { multerOptions } from 'src/common/helper/multer.config';
 
-@ApiTags('User')
+@ApiTags('User')  
 @UseGuards(AccessTokenGuard)
 @Controller('user')
 export class UserController {

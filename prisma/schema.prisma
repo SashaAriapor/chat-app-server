@@ -18,7 +18,9 @@ model User {
   hash         String
   avatar       String    @default("default/default-profile.png")
   bio          String    @default("")
+  socketId     String    @default(uuid())
   contact      Contact[]
+  messages     Message[]
 }
 
 model Contact {
@@ -28,4 +30,13 @@ model Contact {
   lastname    String?
   contactMail String
   author      User    @relation(fields: [authorId], references: [id])
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  authorMail String
+  author     User     @relation(fields: [authorMail], references: [id])
+  to         String
+  createAt   DateTime @default(now())
+  contact    String
 }
