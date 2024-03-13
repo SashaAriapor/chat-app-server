@@ -37,6 +37,6 @@ model Message {
   from     String
   to       String
   createAt DateTime @default(now())
-  contact  String
+  content  String
   author   User     @relation(fields: [from], references: [email])
 }

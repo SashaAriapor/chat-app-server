@@ -6,6 +6,7 @@ import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { ContactModule } from './contact/contact.module';
 import { MessageModule } from './message/message.module';
+
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -17,5 +18,6 @@ import { MessageModule } from './message/message.module';
     ContactModule,
     MessageModule,
   ],
+  providers: [],
 })
 export class AppModule {}

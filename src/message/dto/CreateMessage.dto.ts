@@ -17,5 +17,5 @@ export class createMessageDto {
     })
     @IsString()
     @IsNotEmpty()
-    contact: string
+    content: string
 }
