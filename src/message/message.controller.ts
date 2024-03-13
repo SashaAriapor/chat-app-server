@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { MessageService } from './message.service';
 import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
 import { ApiTags } from '@nestjs/swagger';
@@ -26,5 +26,11 @@ export class MessageController {
     const receiverSocketId = receiver.socketId;
     this.messageGateway.sendMessage(receiverSocketId, message);    
     return message;
+  }
+
+  @Get("")
+  async GetAllMessage(@Req() req: Request) {
+    const email = req.user['email'];
+    return await this.messageService.findAllMessageByEmail(email);
   }
 }
