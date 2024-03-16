@@ -37,5 +37,4 @@ export class UserService {
       data: { avatar: avatarLink },
     });
   }
-
 }
