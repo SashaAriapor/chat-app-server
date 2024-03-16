@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Param,
   Post,
   Put,
   Req,
@@ -28,6 +29,16 @@ export class UserController {
   async getProfile(@Req() req: Request) {
     const userId = req.user['sub'];
     const user = await this.userService.findUserById(userId);
+    const { id ,firstname, lastname, email, bio, avatar, createAt } = user;
+    return { id, firstname, lastname, email, bio, avatar, createAt };
+  }
+
+  @Get('profile/:targetEmail')
+  async getUserProfile(@Param("targetEmail") targetEmail: string) {
+    
+    const user = await this.userService.findUserByEmail(targetEmail);
+    console.log(user);
+    
     const { id ,firstname, lastname, email, bio, avatar, createAt } = user;
     return { id, firstname, lastname, email, bio, avatar, createAt };
   }
